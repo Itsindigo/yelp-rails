@@ -46,12 +46,16 @@ feature 'Restaurants' do
 
     before { Restaurant.create(name: 'Cafe Rouge') }
 
-    scenario 'let a user edit a restaurant' do
+    scenario 'does not let users edit restaurants other than their own' do
       signup
-      click_link 'Edit Cafe Rouge'
-      fill_in 'Name', with: 'Cafe Rouge Restaurant'
-      click_button 'Update Restaurant'
-      expect(current_path).to eq '/restaurants'
+      expect(page).not_to have_link 'Edit Cafe Rouge'
+    end
+
+    scenario 'allows users to edit own restaurants' do
+      signup
+      create_restaurant
+      edit_restaurant
+      expect(page).to have_content 'Java-Me'
     end
   end
 

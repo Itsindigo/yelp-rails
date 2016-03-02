@@ -7,6 +7,18 @@ def signup
   click_button 'Sign up'
 end
 
+def create_restaurant
+  click_link 'Add restaurant'
+  fill_in 'Name', with: 'Java-U'
+  click_button 'Create Restaurant'
+end
+
+def edit_restaurant
+  click_link 'Edit Java-U'
+  fill_in 'Name', with: 'Java-Me'
+  click_button 'Update Restaurant'
+end
+
 def login
   visit '/restaurants'
   click_link 'Sign in'
