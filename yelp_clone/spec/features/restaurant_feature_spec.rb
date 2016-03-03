@@ -65,8 +65,9 @@ feature 'Restaurants' do
 
     scenario 'removes a restaurant when a user clicks a delete link' do
       signup
-      click_link 'Delete KFC'
-      expect(page).not_to have_content 'KFC'
+      create_restaurant
+      click_link 'Delete Java-U'
+      expect(page).not_to have_content 'Java-U'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
   end
